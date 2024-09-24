@@ -1,0 +1,42 @@
+<div class="container " style="margin-top: 170px; ">
+    <h1>cart </h1>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th >Order Id</th>
+                <th>Products</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of allOrders; track $index) {
+            <tr class="align-middle">
+                <td class="align-middle">{{item.id}}</td>
+                <td class="align-middle">
+                    @for(it of item.products; track $index) {
+                     <ul>
+                        <li> {{it.name}} - price: {{it.price}} - quantity: {{it.quantity}}
+                        </li>
+                     </ul>
+                    }
+                </td>
+                <td class="align-middle">{{item.total_price}}</td>
+                <td class="align-middle">{{item.status}}</td>
+
+                <td class="align-middle">
+                    @if (item.status === 'pending') {
+                   <button (click)="confirmDelete(item.id)"  class="btn btn-danger">CancelOrder</button>
+                   }
+                  </td>
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+
+   
+</div>

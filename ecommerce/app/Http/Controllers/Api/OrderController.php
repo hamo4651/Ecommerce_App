@@ -45,8 +45,32 @@ class OrderController extends Controller
     
     public function getOrders()
     {
-        $orders = Order::with('user', 'products')->get();  
+        $orders = Order::with(['user', 'products' => function($query) {
+            $query->select('products.*', 'orders_items.quantity');
+        }])->get();
+        
         return response()->json($orders);
+    }
+
+    public function myorders() {
+        $user = Auth::guard('sanctum')->user();
+        $orders = Order::with(['user', 'products' => function($query) {
+            $query->select('products.*', 'orders_items.quantity');
+        }])->where('user_id', $user->id)->get();
+        return response()->json($orders);
+    }
+
+        public function cancelorder($id) {
+            // $user = Auth::guard('sanctum')->user();
+            $orders = Order::find($id);
+            $orders->delete();
+            return response()->json(['message' => 'Order cancelled successfully']);}
+     
+    public function ViewOrder($id)
+    {
+        $order = Order::with('user', 'products')->where('id', $id)->get();
+        // $orders = Order::with('user', 'products')->get();  
+        return response()->json($order);
     }
     public function updateOrderStatus(Request $request, $orderId)
 {
@@ -57,3 +81,4 @@ class OrderController extends Controller
     return response()->json(['message' => 'Order status updated successfully']);
 }
 }
+

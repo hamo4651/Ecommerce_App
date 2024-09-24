@@ -5,10 +5,16 @@
 
         <thead>
             <tr>
-                <th colspan="2">Description</th>
-                <th>Quantity</th>
-                <th>Remove</th>
-                <th>Price</th>
+                <th >Order Id</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Address</th>
+
+                <th>User Phone</th>
+                <th>Products</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -16,12 +22,34 @@
             <tr class="align-middle">
                 <td class="align-middle">{{item.id}}</td>
                 <td class="align-middle">{{item.user.name}}</td>
-                <!-- <td class="align-middle">{{item.user.address}}</td>
-                <td class="align-middle">{{item.user.phone}}</td> -->
                 <td class="align-middle">{{item.user.email}}</td>
-                <td class="align-middle">{{item.totalPrice}}</td>
+                <td class="align-middle">{{item.user.address}}</td>
+                <td class="align-middle">{{item.user.phone}}</td>
                 <td class="align-middle">
-                   {{ item.quantity }}
+                    @for(it of item.products; track $index) {
+                     <ul>
+                        <li> {{it.name}} - price: {{it.price}} - quantity: {{it.quantity}}
+                        </li>
+                     </ul>
+                    }
+                </td>
+                <td class="align-middle">{{item.total_price}}</td>
+                <td class="align-middle ">
+                    <select name="status" class="form-control" (change)="updateStatus(item.id, $event)">
+                        <option value={{item.status}} selected>{{item.status}}</option>
+
+                        <option value="completed">completed</option>
+                        <option value="rejected">rejected</option>
+                        <option value="pending">pending</option>
+
+                    </select>
+                </td>
+
+                <td class="align-middle">
+                    
+                    <button (click)="confirmDelete(item.id)"  class="btn btn-danger me-1">Remove</button>
+                    <!-- <button (click)="confirmComplete(item.id)"  class="btn btn-success">Update</button> -->
+
                   </td>
                 <!-- <td class="align-middle"><button class="btn btn-danger" (click)="removeItem(item.product.id)">Remove</button></td> -->
                 <!-- <td class="align-middle">{{item.product.price * item.quantity }}</td> -->

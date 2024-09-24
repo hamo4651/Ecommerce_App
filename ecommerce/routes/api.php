@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CategoryController;
 //     return $request->user();
 // });
 Route::get('/products/search', [ProductController::class, 'search']);
+Route::get('/cancelorder/{id}', [OrderController::class, 'cancelorder']);
 
 Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/products', ProductController::class);
@@ -27,8 +28,13 @@ Route::group(["middleware"=>"auth:sanctum"],function(){
     Route::get('/cartitems', [ProductController::class, 'getCartitem']);
     Route::delete('/cart/{productId}', [ProductController::class, 'removeFromCart']);
     Route::post('/orders', [OrderController::class, 'placeOrder']);
+
+    Route::get('/myorders', [OrderController::class, 'myorders']);
+
     Route::get('/allOrders', [OrderController::class, 'getOrders']);
-    Route::put('/updateOrders/{orderId}', [OrderController::class, 'updateOrderStatus']);
+    Route::get('/ViewOrder/{id}', [OrderController::class, 'ViewOrder']);
+
+    Route::post('/updateOrders/{orderId}', [OrderController::class, 'updateOrderStatus']);
 
 
 });

@@ -19,6 +19,7 @@ import { ShowproductsComponent } from './showproducts/showproducts.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
+import { MyordersComponent } from './myorders/myorders.component';
 
 export const routes: Routes = [
 
@@ -75,14 +76,20 @@ export const routes: Routes = [
 },
 {
     path: 'cart',
-    component: CartComponent 
+    component: CartComponent ,canActivate: [AuthGuard]
 
 },
 {
     path: 'orders',
-    component: OrderComponent 
+    component: OrderComponent ,canActivate: [AdminGuard] 
 
 },
+{
+    path: 'myorders',
+    component: MyordersComponent ,canActivate: [AuthGuard]
+
+},
+
 {
     path: 'filter/:id',
     component: FilteredComponent , 

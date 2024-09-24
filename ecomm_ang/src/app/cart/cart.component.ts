@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,7 @@ import { CartService } from '../cart.service';
     cartItems: any[] = [];
     cartItemCount: number = 0;
     totalPrice: number = 0;
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService , private router: Router) {}
   
     ngOnInit() {
       this.loadCartItems();
@@ -70,6 +71,7 @@ import { CartService } from '../cart.service';
           this.loadCartItems();
           this.totalPrice = 0;
           this.cartService.updateCartCount(0);
+          this.router.navigate(['/myorders']);
 
         },
         (error) => {
