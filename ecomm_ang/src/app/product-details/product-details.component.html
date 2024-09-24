@@ -1,0 +1,46 @@
+<div class="container " style="margin-top: 170px; ">
+    <div class="row g-0 flex-md-row  shadow border">
+      <div class="col-md-5 col-lg-4">
+        <img
+          class="img-fluid rounded-4"
+          [src]="product.image"
+          [alt]="product.name"
+        />
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <div
+          class="card-body "
+        >
+            <h1 class="card-title roboto-bold">{{ product.name }}</h1>
+            
+         
+          <div class="card-text">
+            
+            <p>{{ product?.description }}</p>
+            <span
+            class="text-warning m-1 "
+            *ngFor="let _ of getFlooredRating(product.rating)"
+          >
+            <fa-icon [icon]="faSolidStar"></fa-icon>
+          </span>
+            <p><strong>Category:</strong> {{ product?.category?.name }}</p>
+            <p><strong>Price:</strong> ${{ product?.price }}</p>
+            <p><strong>Status:</strong> {{ product?.status }}</p>
+            <p><strong>Stock:</strong> {{ product?.stock }}</p>
+          </div>
+        
+          </div>
+         
+          
+        
+  
+          <br />
+  
+          <a class="text-dark text-decoration-none d-inline-block" routerLink="/"
+            >Back to homa page<fa-icon [icon]="faLink"></fa-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+    <hr />
+  

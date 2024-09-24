@@ -1,0 +1,56 @@
+<div class="container w-50 border rounded px-5 p-1" style="margin-top: 175px;">
+
+    <h2 class="text-center my-2">Add Category</h2>
+    <form [formGroup]="AddForm" (ngSubmit)="handleSubmit()">
+        <div class="mb-2 ">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" formControlName="name">
+        </div>
+        @if(AddForm.get('name')?.invalid &&
+        (AddForm.get('name')?.touched || submitted)){
+        <div id="nameErrors" class="form-text text-danger">
+            @if(AddForm.get('name')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+        <div class="mb-2 ">
+            <label for="exampleInputEmail1" class="form-label">Description</label>
+            <input type="description" name="description" class="form-control" formControlName="description" 
+                aria-describedby="emailHelp">
+        </div>
+        @if(AddForm.get('description')?.invalid &&
+        (AddForm.get('description')?.touched || submitted)){
+        <div id="descriptionErrors" class="form-text text-danger">
+            @if(AddForm.get('description')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+
+        <div class="mb-2">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
+            <div *ngIf="AddForm.get('image')?.invalid && (AddForm.get('image')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="AddForm.get('image')?.hasError('required')">Required</span>
+            </div>
+        </div>
+        @if(AddForm.get('image')?.invalid &&
+        (AddForm.get('image')?.touched || submitted)){
+        <div id="imageErrors" class="form-text text-danger">
+            @if(AddForm.get('image')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+      
+
+      
+        
+        <div class="d-flex justify-content-center ">
+            <button type="submit"  class="btn btn-primary w-50 m-auto "> Add Category</button>
+        </div>
+    </form>
+</div>

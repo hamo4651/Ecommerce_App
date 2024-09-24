@@ -1,0 +1,22 @@
+.card-body {
+    padding: 2rem;
+  }
+  
+  img.rounded-circle {
+    border: 2px solid #ddd;
+  }
+  
+  .nav-tabs .nav-link {
+    margin-right: 1rem;
+    border: none;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-block {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  

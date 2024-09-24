@@ -1,0 +1,25 @@
+
+<div class="new_arrivals " style="padding-top: 100px;">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center pb-4">
+                <div class="section_title new_arrivals_title ">
+                    <h2>Products</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row gy-5 text-center">
+            @for (item of categories; track item.id) {
+
+            <div class="col-md-3">
+
+            <app-card-item [productItem]="item"></app-card-item>                  
+              
+                    
+            </div>
+        }
+        </div>
+    
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<div class="container w-50 border rounded px-5 p-1" style="margin-top: 175px;">
+
+    <h2 class="text-center my-2">Edit Product</h2>
+    <form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+        <div class="row">
+        <div class="mb-2 col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" formControlName="name">
+        </div>
+        @if(editForm.get('name')?.invalid &&
+        (editForm.get('name')?.touched || submitted)){
+        <div id="nameErrors" class="form-text text-danger">
+            @if(editForm.get('name')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+        <div class="mb-2 col-md-6">
+            <label for="price" class="form-label">price</label>
+            <input type="text" name="price" class="form-control" formControlName="price">
+        </div>
+        @if(editForm.get('price')?.invalid &&
+        (editForm.get('price')?.touched || submitted)){
+        <div id="priceErrors" class="form-text text-danger">
+            @if(editForm.get('price')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+        <div class="mb-2 col-md-12 ">
+            <label for="exampleInputEmail1" class="form-label">Description</label>
+            <input type="description" name="description" class="form-control" formControlName="description" 
+                aria-describedby="emailHelp">
+        </div>
+        @if(editForm.get('description')?.invalid &&
+        (editForm.get('description')?.touched || submitted)){
+        <div id="descriptionErrors" class="form-text text-danger">
+            @if(editForm.get('description')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+        <div class="mb-2 col-md-6">
+            <label for="stock" class="form-label">stock</label>
+            <input type="number" name="stock" class="form-control" formControlName="stock">
+        </div>
+        @if(editForm.get('stock')?.invalid &&
+        (editForm.get('stock')?.touched || submitted)){
+        <div id="stockErrors" class="form-text text-danger">
+            @if(editForm.get('stock')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        } <div class="mb-2 col-md-6">
+            <label for="status" class="form-label">status</label>
+            <select name="status" class="form-control" formControlName="status">
+                <option value="available">available</option>
+                <option value="unavailable">unavailable</option>
+            </select>
+        </div>
+        @if(editForm.get('status')?.invalid &&
+        (editForm.get('status')?.touched || submitted)){
+        <div id="statusErrors" class="form-text text-danger">
+            @if(editForm.get('status')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+         <div class="mb-2 col-md-6">
+            <label for="category" class="form-label">category</label>
+            <select name="category_id" class="form-control" formControlName="category_id" id="">
+                @for (item of categories; track item.id) {
+                    <option value={{item.id}}>{{item.name}}</option>
+
+                }
+            </select>
+        </div>
+        @if(editForm.get('category_id')?.invalid &&
+        (editForm.get('category_id')?.touched || submitted)){
+        <div id="category_idErrors" class="form-text text-danger">
+            @if(editForm.get('category_id')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div> 
+        }
+        <div class="mb-2 col-md-6">
+            <label for="rating" class="form-label">rating</label>
+            <input type="number" name="rating" class="form-control" formControlName="rating">
+        </div>
+        @if(editForm.get('rating')?.invalid &&
+        (editForm.get('rating')?.touched || submitted)){
+        <div id="ratingErrors" class="form-text text-danger">
+            @if(editForm.get('rating')?.hasError('required')){
+            <span>Required</span>
+            }
+        </div>
+    }
+  
+
+        <div class="mb-2 col-md-12">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name="image" id="image" class="form-control" (change)="onFileChange($event)" >
+            <div *ngIf="editForm.get('image')?.invalid && (editForm.get('image')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="editForm.get('image')?.hasError('required')">Required</span>
+            </div>
+        </div>
+        @if(editForm.get('image')?.invalid &&
+        (editForm.get('image')?.touched || submitted)){
+        <div id="imageErrors" class="form-text text-danger">
+            @if(editForm.get('image')?.hasError('required')){
+            <span>Required</span>
+            }
+           
+        </div>
+        }
+      
+
+      
+        
+        <div class="d-flex justify-content-center col-md-12">
+            <button type="submit"  class="btn btn-primary w-50 m-auto "> Edit Product</button>
+        </div>
+    </div>
+    </form>
+</div>

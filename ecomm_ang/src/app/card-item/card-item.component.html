@@ -1,0 +1,31 @@
+
+
+
+
+
+
+      
+        <div class="rounded position-relative fruite-item">
+            <div class="fruite-img">
+                <img [src]="productItem.image"  class="img-fluid  rounded-top" alt="">
+            </div>
+            @if(productItem.stock>0){
+                <span class="badge w-50 py-2 m-2 rounded-pill text-bg-success">In stock</span>
+            
+            }@else {
+                <span class="badge w-50 py-2 m-2 rounded-pill text-bg-warning">Out of stock</span>
+            
+            }            <div class="p-4 border border-secondary border-top-0 rounded-bottom text-start">
+                <h4>{{productItem.name}}</h4>
+                <p>{{productItem.description}}</p>
+                <div class="card-text"> <b>Rating: </b>
+                    <span class="text-warning" *ngFor="let _ of getFlooredRating(productItem.rating); ">
+                        <fa-icon [icon]="faSolidStar"></fa-icon> 
+                    </span>      
+                    </div> 
+                <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p class="text-dark fs-5 fw-bold mb-0">{{productItem.price | currency:'USD' }}</p>
+                    <button (click)="addToCart(productItem.id)" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                </div>
+            </div>
+        </div>

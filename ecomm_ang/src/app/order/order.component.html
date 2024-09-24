@@ -1,0 +1,39 @@
+<div class="container " style="margin-top: 170px; ">
+    <h1>cart </h1>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th colspan="2">Description</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(item of allOrders; track $index) {
+            <tr class="align-middle">
+                <td class="align-middle">{{item.id}}</td>
+                <td class="align-middle">{{item.user.name}}</td>
+                <!-- <td class="align-middle">{{item.user.address}}</td>
+                <td class="align-middle">{{item.user.phone}}</td> -->
+                <td class="align-middle">{{item.user.email}}</td>
+                <td class="align-middle">{{item.totalPrice}}</td>
+                <td class="align-middle">
+                   {{ item.quantity }}
+                  </td>
+                <!-- <td class="align-middle"><button class="btn btn-danger" (click)="removeItem(item.product.id)">Remove</button></td> -->
+                <!-- <td class="align-middle">{{item.product.price * item.quantity }}</td> -->
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+
+    <!-- <p class="text-end fw-bold fs-4">Total: {{ totalPrice }}</p>
+    <div class="text-center">
+    <button (click)="placeOrder()" class="btn btn-success text-center w-25 m-auto">
+        Make Order
+      </button></div> -->
+</div>
