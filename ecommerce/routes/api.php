@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -38,3 +41,11 @@ Route::group(["middleware"=>"auth:sanctum"],function(){
 
 
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('favorites/toggle', [FavoriteController::class, 'toggleFavorite']);
+    Route::get('favorites', [FavoriteController::class, 'userFavorites']);
+    Route::post('reviews', [ReviewController::class, 'addReview']);
+   
+});
+Route::get('reviews/{product}', [ReviewController::class, 'getReviews']);

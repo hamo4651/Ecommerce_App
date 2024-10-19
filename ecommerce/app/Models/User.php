@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Product;
-class User extends Authenticatable
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasApiTokens;
 
@@ -35,6 +37,13 @@ class User extends Authenticatable
 public function cart()
 {
     return $this->hasMany(CartItem::class);
+}
+public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
+public function favorites(){
+    return $this->hasMany(Favorite::class);
 }
     /**
      * The attributes that should be hidden for serialization.

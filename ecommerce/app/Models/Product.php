@@ -29,4 +29,12 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class, 'orders_items')
         ->withPivot('quantity', 'price');      }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function favorites(){
+        return $this->hasMany(Favorite::class);
+    }
 }

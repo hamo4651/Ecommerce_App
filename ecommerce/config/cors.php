@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'], // Allow the Angular app's origin
+    'allowed_origins' => ['http://localhost:4200'], // Allow the Angular app's origin
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
