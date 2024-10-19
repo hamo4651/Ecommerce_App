@@ -5,21 +5,23 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
-import { CategoryComponent } from './category/category.component';
+import { CategoryComponent } from './dashbourd/category/category.component';
 import { AdminGuard } from './admin.guard';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { ProductsComponent } from './products/products.component';
-import { AddProductComponent } from './add-product/add-product.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { FilteredComponent } from './filtered/filtered.component';
+import { AddProductComponent } from './dashbourd/products/add-product/add-product.component';
+import { ProductDetailsComponent } from './dashbourd/products/product-details/product-details.component';
+import { FilteredComponent } from './master/filtered/filtered.component';
 import { ShowproductsComponent } from './showproducts/showproducts.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { CartComponent } from './cart/cart.component';
-import { OrderComponent } from './order/order.component';
+import { OrderComponent } from './dashbourd/order/order.component';
 import { MyordersComponent } from './myorders/myorders.component';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { DashbourdComponent } from './dashbourd/dashbourd.component';
+import { AddCategoryComponent } from './dashbourd/category/add-category/add-category.component';
+import { EditCategoryComponent } from './dashbourd/category/edit-category/edit-category.component';
+import { ProductsComponent } from './dashbourd/products/products.component';
+import { EditProductComponent } from './dashbourd/products/edit-product/edit-product.component';
 
 export const routes: Routes = [
 
@@ -45,7 +47,7 @@ export const routes: Routes = [
 },
 {
     path: 'details/:id',
-    component: ProductDetailsComponent , canActivate: [AdminGuard] ,
+    component: ProductDetailsComponent ,
 
 },
 {
@@ -103,11 +105,21 @@ export const routes: Routes = [
     path: 'register',
     component:RegisterComponent
 }
+
 ,
+{
+    path: 'favorites',
+    component:FavoritesComponent ,canActivate: [AuthGuard]
+},
+{
+    path: 'dashboard',
+    component:DashbourdComponent 
+},
 {
     path: 'not-authorized',
     component:NotAuthorizedComponent
 }
+
 ,
 {
     path: '**',

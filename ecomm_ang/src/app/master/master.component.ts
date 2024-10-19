@@ -1,9 +1,9 @@
 import {  Component, ViewEncapsulation } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { HeaderComponent } from '../header/header.component';
-import { ArrivalsComponent } from '../arrivals/arrivals.component';
-import { BestSellerComponent } from '../best-seller/best-seller.component';
-import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ArrivalsComponent } from './arrivals/arrivals.component';
+import { BestSellerComponent } from './best-seller/best-seller.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-master',

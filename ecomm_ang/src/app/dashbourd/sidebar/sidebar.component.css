@@ -1,0 +1,23 @@
+.sidebar{
+z-index: 1;
+padding-top: 50px;
+}
+
+.nav-item.active {
+    background-color: #001f3f; /* Dark blue background for active item */
+    color: #ffffff; /* White text color */
+  }
+  
+  .nav-item.active .nav-link {
+    color: #ffffff; /* Ensure nav-link text inside active item is white */
+  }
+  
+  .nav-item.active i {
+    color: #ffffff; /* Ensure icon color is white inside active item */
+  }
+  
+  /* Optional: Add hover effect */
+  .nav-item.active:hover {
+    background-color: #003366; /* Slightly lighter blue on hover */
+  }
+  

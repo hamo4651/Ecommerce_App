@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
-@Injectable({
+@Injectable({ 
   providedIn: 'root',
 })
 export class AuthService {
@@ -94,6 +94,8 @@ export class AuthService {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.removeItem(this.tokenKey);
           localStorage.removeItem('currentUser');
+          localStorage.removeItem('favs');
+
           this.currentUserSubject.next(null);
         }
         this.router.navigate(['/login']);

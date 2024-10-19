@@ -1,0 +1,36 @@
+.heart-red {
+    color: red;
+  }
+  
+  .heart-default {
+    color: grey;
+  }
+
+  .fruite-img {
+    position: relative;
+}
+
+.heart {
+    color: #ccc; /* Default color for the heart icon */
+    transition: color 0.3s;
+}
+
+.heart-red {
+    color: red; /* Color when product is marked as favorite */
+}
+
+.heart-default {
+    color: #ccc; /* Default grey color for non-favorite */
+}
+
+.addToFav {
+    display: none; /* Hide the checkbox */
+}
+
+.fruite-img .fa-heart {
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

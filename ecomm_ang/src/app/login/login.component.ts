@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  // credentials = { email: '', password: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -25,8 +24,15 @@ export class LoginComponent {
     this.authService.login(form.value).subscribe(
       (response) => {
         console.log('Login successful', response);
-        this.router.navigate(['/profile']);
-      },
+        this.authService.getUser().subscribe(user => {
+          if(user.role == 'admin'){
+            this.router.navigate(['/dashboard']);
+          }
+          if (user.role == 'user') {
+            this.router.navigate(['/']);
+
+          }
+      })      },
       (error) => {
         console.error('Login failed', error);
       }
