@@ -23,7 +23,7 @@ export class RegisterComponent {
 
   // list :Array<any> = [];
 
-  
+  messages: string = '';
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
@@ -40,7 +40,10 @@ export class RegisterComponent {
         Validators.required,
         Validators.minLength(6),
       ]],
-
+      password_confirmation: ['', [
+        Validators.required,
+        Validators.minLength(6),
+      ]],
     });
   }
   
@@ -68,7 +71,10 @@ export class RegisterComponent {
           this.router.navigate(['/login']);
         },
         error => {
-          console.error('Registration failed:', error);
+          // console.error('Registration failed:', error);
+          if(error.error.errors.password_confirmation){
+            this.messages = error.error.errors.password_confirmation
+          }
         }
       );
     }

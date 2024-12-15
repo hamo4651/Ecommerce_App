@@ -1,4 +1,4 @@
-<div class="container w-50 border rounded  p-5" style="margin-top: 150px;">
+<!-- <div class="container w-50 border rounded  p-5" style="margin-top: 150px;">
 
     <h1 class="text-center my-2 ">Log in</h1>
     <form #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)">
@@ -33,5 +33,75 @@
         <div class="d-flex justify-content-center ">
             <button type="submit" class="btn btn-primary w-50 m-auto "> Log in</button>
         </div>
-    </form>
+        <button id="googleSignInButton" class="btn btn-google" type="button" (click)="signInWithGoogle()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Icon" />
+            Sign in with Google
+          </button>
+            </form>
+</div> -->
+<div class="container border rounded-4 p-5 shadow-lg " style="margin-top: 170px; background-color: #f8f9fa;width: 35%;">
+  <h1 class="text-center my-4 text-primary">Log in</h1>
+
+  <form #loginForm="ngForm" (ngSubmit)="handleSubmit(loginForm)">
+    <!-- Email Field -->
+    <div class="mb-4">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="email"
+        class="form-control border-primary shadow-sm p-2"
+        ngModel
+        #email="ngModel"
+        required
+        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        id="email"
+        aria-describedby="emailHelp"
+      />
+      <div *ngIf="email.invalid && (email.touched || submitted)" class="form-text text-danger mt-1">
+        <span *ngIf="email.hasError('required')">Email is required</span>
+        <span *ngIf="email.hasError('pattern')">Email is not valid</span>
+      </div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-4">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control border-primary shadow-sm p-2"
+        ngModel
+        #password="ngModel"
+        required
+        id="password"
+      />
+      <div *ngIf="password.invalid && (password.touched || submitted)" class="form-text text-danger mt-1">
+        Password is required
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary w-75 py-2">Log in</button>
+    </div>
+
+    <!-- Google Sign-In -->
+    <div id="googleSignInButton" class="mt-4 d-flex justify-content-center"></div>
+    <!-- Uncomment this if you want a button -->
+    <!-- 
+    <button
+      class="btn btn-google mt-3 w-100"
+      (click)="signInWithGoogle()"
+      style="background-color: #4285f4; color: white; border: none; border-radius: 4px;"
+    >
+      <img
+        src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+        alt="Google Icon"
+        style="width: 20px; margin-right: 8px;"
+      />
+      Sign in with Google
+    </button>
+    -->
+  </form>
 </div>
+

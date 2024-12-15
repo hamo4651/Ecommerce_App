@@ -31,4 +31,7 @@ export class FavoriteService {
   addReview(id: number, rating: number, review: string) {
     return this.http.post('http://127.0.0.1:8000/api/reviews', { product_id: id, rating, review }, { headers: this.getHeaders() });
   }
+  deleteReview(id: number) {
+    return this.http.delete('http://127.0.0.1:8000/api/reviews/' + id, { headers: this.getHeaders() });
+  }
 }

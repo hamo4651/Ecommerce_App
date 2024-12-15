@@ -1,46 +1,107 @@
-<div class="container " style="margin-top: 170px; ">
-    <div class="row g-0 flex-md-row  shadow border">
-      <div class="col-md-4 col-lg-3">
-        <img
-          class="img-fluid rounded-4 " width="100%"
-          [src]="product.image"
-          [alt]="product.name"
-        />
-      </div>
-      <div class="col-md-8 col-lg-9">
-        <div
-          class="card-body ps-3"
-        >
-            <h1 class="card-title roboto-bold">{{ product.name }}</h1>
+<div class="container " style="margin-top: 170px; width: 70%;">
+  <div class="row g-0 shadow border rounded-4 overflow-hidden">
+    <div class="col-md-4 col-lg-3">
+      <img
+        class="img-fluid rounded-start" 
+        [src]="product.image"
+        [alt]="product.name"
+      />     
+
+    </div>
+    <div class="col-md-8 col-lg-9">
+      <div class="card-body p-4">
+        <h1 class="card-title roboto-bold">{{ product.name }}</h1>
+
+        <div class="card-text mb-3">
+          <p>{{ product?.description }}
             
-         
-          <div class="card-text">
-            
-            <p>{{ product?.description }}</p>
+          </p>
+          <div>
             <span
-            class="text-warning m-1 "
-            *ngFor="let _ of getFlooredRating(product.rating)"
+              class="text-warning"
+              *ngFor="let _ of getFlooredRating(product.rating)"
+            >
+              <fa-icon [icon]="faSolidStar"></fa-icon>
+            </span>
+          </div>
+          <p><strong>Category:</strong> {{ product?.category_name }}</p>
+          <p><strong>Price:</strong> ${{ product?.price }}</p>
+          <p><strong>Status:</strong> {{ product?.status }}</p>
+          <p><strong>Stock:</strong> {{ product?.stock }}</p>
+        </div>
+
+        <a
+          class="btn btn-outline-primary"
+          routerLink="/"
+          >Back to home page <fa-icon [icon]="faLink"></fa-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container " style="margin-top: 30px; width: 70%;">
+  <h1 class="text-center">Reviews</h1>
+  <div class="row g-0 shadow border rounded-4 overflow-hidden">
+@for (item of comments; track $index) {
+
+  <div class="col-md-8 col-lg-9">
+    <div class="card-body p-4">
+      <div class="d-flex align-items-center ">
+      <h1 class="card-title roboto-bold me-2 ">{{ item?.user.name }}</h1>
+      <span>{{ item?.created_at | date:"medium"}}</span>
+      @if (user?.id == item?.user_id || user?.role == "admin") {
+      <i class="fa fa-trash ms-auto text-end fs-3 text-danger me-2" (click)="deleteReview(item?.id)"></i>
+      }
+    </div>
+      <div class="card-text mb-3">
+        <p>{{ item?.review }} </p>
+        <div>
+          <span
+            class="text-warning"
+            *ngFor="let _ of getFlooredRating(item?.rating)"
           >
             <fa-icon [icon]="faSolidStar"></fa-icon>
           </span>
-            <p><strong>Category:</strong> {{ product?.category?.name }}</p>
-            <p><strong>Price:</strong> ${{ product?.price }}</p>
-            <p><strong>Status:</strong> {{ product?.status }}</p>
-            <p><strong>Stock:</strong> {{ product?.stock }}</p>
-          </div>
-        
-          </div>
-         
-          
-        
-  
-          <br />
-  
-          <a class="text-dark text-decoration-none d-inline-block" routerLink="/"
-            >Back to homa page<fa-icon [icon]="faLink"></fa-icon>
-          </a>
         </div>
+
+      </div>
       </div>
     </div>
-    <hr />
-  
+}
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-8 col-lg-9">
+      <h2>Add a Review</h2>
+      <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+        <div class="mb-3">
+          <label for="review" class="form-label">Your Review</label>
+          <textarea
+            id="review"
+            class="form-control"
+            rows="3"
+            [(ngModel)]="newReview.text"
+            name="review"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <select
+            id="rating"
+            class="form-select"
+            [(ngModel)]="newReview.rating"
+            name="rating"
+            required
+          >
+            <option value="" disabled>Select a rating</option>
+            <option *ngFor="let i of [1, 2, 3, 4, 5]" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+

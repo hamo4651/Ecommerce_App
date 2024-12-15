@@ -1,0 +1,14 @@
+.card-title {
+    font-size: 1.5rem; /* Increase font size */
+  }
+  
+  .card-text p {
+    margin-bottom: 0.5rem; /* Reduce spacing between paragraphs */
+  }
+  
+  .text-warning {
+    font-size: 1.2rem; /* Increase the size of the rating stars */
+  }
+img {
+    width: 100%;
+}  

@@ -39,9 +39,12 @@ export class NavbarComponent {
       this.cartItemCount = count;
       console.log('Updated cart item count:', this.cartItemCount);
     });
-
+ 
     // Load initial cart count
+    if(this.user != ''){
+
     this.loadCartCount();
+    }
   }
 
   loadCartCount() {
@@ -51,7 +54,7 @@ export class NavbarComponent {
         console.log('Cart item count:', this.cartItemCount);
       },
       error => {
-        console.error('Error fetching cart count', error);
+        // console.error('Error fetching cart count', error);
       }
     );
   }

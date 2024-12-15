@@ -33,4 +33,8 @@ public function getReviews($product_id) {
     return response()->json($reviews);
 
 }
-}
+public function deleteReview($id) {
+    $review = Review::find($id);
+    $review->delete();
+    return response()->json(['message' => 'Review deleted successfully']);
+}}

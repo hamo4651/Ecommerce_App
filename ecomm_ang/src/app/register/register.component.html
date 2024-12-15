@@ -1,110 +1,91 @@
-<div class="container w-50 border rounded px-5 p-1" style="margin-top: 150px;">
-
-    <h1 class="text-center my-2">Register</h1>
+<div class="container w-50 shadow-lg rounded-4 p-4 bg-light" style="margin-top: 170px;">
+    <h1 class="text-center mb-4 text-primary">Register</h1>
     <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
-        <div class="mb-2 ">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" formControlName="name">
-        </div>
-        <!-- <div class="mb-2 "></div>
-            <label for="address" class="form-label">Address</label>
-            <input type="text" name="address" class="form-control" formControlName="address">
-        </div> -->
-        @if(registerForm.get('name')?.invalid &&
-        (registerForm.get('name')?.touched || submitted)){
-        <div id="nameErrors" class="form-text text-danger">
-            @if(registerForm.get('name')?.hasError('required')){
-            <span>Required</span>
-            }
-        </div>
-        }
-       
-        <div class="mb-2 ">
-            <label for="address" class="form-label">Address</label>
-            <input type="text" name="address" class="form-control" formControlName="address">
-        </div>
-        @if(registerForm.get('address')?.invalid &&
-        (registerForm.get('address')?.touched || submitted)){
-        <div id="addressErrors" class="form-text text-danger">
-            @if(registerForm.get('address')?.hasError('required')){
-            <span>Required</span>
-            }
-        </div>
-        }
+        <!-- Name Field -->
+         <div class="row">
+           
          
-        <div class="mb-2 ">
-            <label for="phone" class="form-label">phone</label>
-            <input type="text" name="phone" class="form-control" formControlName="phone">
-        </div>
-        @if(registerForm.get('phone')?.invalid &&
-        (registerForm.get('phone')?.touched || submitted)){
-        <div id="phoneErrors" class="form-text text-danger">
-            @if(registerForm.get('phone')?.hasError('required')){
-            <span>Required</span>
-            }
-        </div>
-        }
-        <div class="mb-2 ">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" formControlName="email" id="exampleInputEmail1"
-                aria-describedby="emailHelp">
-        </div>
-        @if(registerForm.get('email')?.invalid &&
-        (registerForm.get('email')?.touched || submitted)){
-        <div id="emailErrors" class="form-text text-danger">
-            @if(registerForm.get('email')?.hasError('required')){
-            <span>Required</span>
-            }
-            @if(registerForm.get('email')?.hasError('pattern')){
-                <span>Email is not valid</span>
-                }
-        </div>
-        }
-
-        <div class="mb-2">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" id="image" class="form-control" (change)="onFileChange($event)">
-            <div *ngIf="registerForm.get('image')?.invalid && (registerForm.get('image')?.touched || submitted)" class="form-text text-danger">
-                <span *ngIf="registerForm.get('image')?.hasError('required')">Required</span>
+        <div class="mb-3 col-6">
+            <label for="name" class="form-label fw-semibold">Name</label>
+            <input type="text" name="name" class="form-control border-primary" formControlName="name" placeholder="Enter your name">
+            <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('name')?.hasError('required')">Name is required</span>
             </div>
         </div>
-        @if(registerForm.get('image')?.invalid &&
-        (registerForm.get('image')?.touched || submitted)){
-        <div id="imageErrors" class="form-text text-danger">
-            @if(registerForm.get('image')?.hasError('required')){
-            <span>Required</span>
-            }
-           
+
+        <!-- Address Field -->
+        <div class="mb-3 col-6">
+            <label for="address" class="form-label fw-semibold">Address</label>
+            <input type="text" name="address" class="form-control border-primary" formControlName="address" placeholder="Enter your address">
+            <div *ngIf="registerForm.get('address')?.invalid && (registerForm.get('address')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('address')?.hasError('required')">Address is required</span>
+            </div>
         </div>
-        }
-        <input type="hidden" name="role" value="user" formControlName="role">
-        <div class="mb-2 ">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" formControlName="password"
-                id="exampleInputPassword1">
+    
+        <!-- Phone Field -->
+        <div class="mb-3 col-6">
+            <label for="phone" class="form-label fw-semibold">Phone</label>
+            <input type="text" name="phone" class="form-control border-primary" formControlName="phone" placeholder="Enter your phone number">
+            <div *ngIf="registerForm.get('phone')?.invalid && (registerForm.get('phone')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('phone')?.hasError('required')">Phone is required</span>
+            </div>
         </div>
 
-        @if(registerForm.get('password')?.invalid &&
-        (registerForm.get('password')?.touched || submitted)){
-        <div id="passwordErrors" class="form-text text-danger">
-            @if(registerForm.get('password')?.hasError('required')){
-            <span>Required</span>
-            }
-            @if(registerForm.get('password')?.hasError('minlength')){
-                <span>minlength 8 characters
-                   </span>
-                }
-            @else if(registerForm.get('password')?.hasError('pattern')){
-                <span>contains at least one lowercase one
-                    uppercase one digit and special character</span>
-                }
-               
+        <!-- Email Field -->
+        <div class="mb-3 col-6">
+            <label for="exampleInputEmail1" class="form-label fw-semibold">Email address</label>
+            <input type="email" name="email" class="form-control border-primary" formControlName="email" placeholder="Enter your email">
+            <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('email')?.hasError('required')">Email is required</span>
+                <span *ngIf="registerForm.get('email')?.hasError('pattern')">Email is not valid</span>
+            </div>
         </div>
-        }
-        
-        <div class="d-flex justify-content-center ">
-            <button type="submit"  class="btn btn-primary w-50 m-auto "> Register</button>
+  
+        <!-- Image Upload -->
+        <div class="mb-3 col-12">
+            <label for="image" class="form-label fw-semibold">Image</label>
+            <input type="file" id="image" class="form-control border-primary" (change)="onFileChange($event)">
+            <div *ngIf="registerForm.get('image')?.invalid && (registerForm.get('image')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('image')?.hasError('required')">Image is required</span>
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-3 col-6">
+            <label for="exampleInputPassword1" class="form-label fw-semibold">Password</label>
+            <input type="password" name="password" class="form-control border-primary" formControlName="password" placeholder="Enter your password">
+            <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('password')?.hasError('required')">Password is required</span>
+                <span *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 8 characters</span>
+                <!-- <span *ngIf="registerForm.get('password')?.hasError('pattern')">
+                    Password must include uppercase, lowercase, a number, and a special character
+                </span> -->
+            </div>
+        </div>
+        <div class="mb-3 col-6">
+            <label for="exampleInputPassword1" class="form-label fw-semibold">Confirm Password</label>
+            <input type="password" name="password_confirmation" class="form-control border-primary" formControlName="password_confirmation" placeholder="Enter your password_confirmation">
+            <div *ngIf="registerForm.get('password_confirmation')?.invalid && (registerForm.get('password_confirmation')?.touched || submitted)" class="form-text text-danger">
+                <span *ngIf="registerForm.get('password_confirmation')?.hasError('required')">Password_confirmation is required</span>
+                <span *ngIf="registerForm.get('password_confirmation')?.hasError('minlength')">Password_confirmation must be at least 8 characters</span>
+                <!-- <span *ngIf="registerForm.get('password_confirmation')?.hasError('pattern')">
+                    Password_confirmation must include uppercase, lowercase, a number, and a special character
+                </span> -->
+               
+            </div>
+                @if(messages){
+                    <div class="alert alert-danger">
+
+                    <span>{{messages}}</span>
+                </div>
+
+                    }
+           
+        </div>
+    </div>
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-50 fw-semibold">Register</button>
         </div>
     </form>
 </div>
-

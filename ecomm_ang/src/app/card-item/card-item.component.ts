@@ -71,6 +71,7 @@ checkIfFavorite() {
     }
   
     // Update localStorage with the new favorites array
-    localStorage.setItem('favs', JSON.stringify(favs));    this.favoriteService.toggleFavorite(id).subscribe();
+    localStorage.setItem('favs', JSON.stringify(favs));   
+     this.favoriteService.toggleFavorite(id).subscribe();
   }
 }

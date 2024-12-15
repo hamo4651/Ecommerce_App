@@ -68,7 +68,7 @@ class ProductController extends Controller
         }
         return new ProductResource($product);
     }
-
+ 
     /**
      * Update the specified resource in storage.
      */
@@ -192,6 +192,11 @@ class ProductController extends Controller
     public function getCartcount()
     {
         $user = Auth::guard('sanctum')->user();
+        if(!$user){
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
         $cartcount = CartItem::where('user_id', $user->id)->count();
         return response()->json($cartcount);
     }

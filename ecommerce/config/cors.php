@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['*'],
+    'paths' => ['*','auth/google/callback'],
 
     'allowed_methods' => ['*'],
 

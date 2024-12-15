@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\RegisterUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -21,10 +24,16 @@ class AuthController extends Controller
       'address' => 'required',
       'phone' => 'required',
       'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|min:6',
+      'password' => 'required|min:6|confirmed',
+      'password_confirmation' => 'required|same:password',
       'role' => Rule::in(['admin', 'user']),
       'image' => 'image|mimes:jpeg,png,jpg'
 
+    ],[
+      'name.required' => 'Name is required',
+      'address.required' => 'Address is required',
+      'password.required' => 'Password is required',
+      'password_confirmation.same' => 'Password does not match',
     ]);
     if ($validator->fails()) {
       return response()->json([
@@ -49,7 +58,8 @@ class AuthController extends Controller
       'image' => $validatedData['image'],
       'password' => Hash::make($validatedData['password']),
     ]);
-    
+    // Mail::to($user->email)->send(new \App\Mail\RegisterUsermail($user));
+     event(new RegisterUser($user));
     $token = $user->createToken('auth_token')->plainTextToken;
     return response()->json([
       'message' => 'User created successfully', 
