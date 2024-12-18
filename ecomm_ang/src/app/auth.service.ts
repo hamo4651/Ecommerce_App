@@ -42,10 +42,10 @@ export class AuthService {
         }
         return false;
       }),
-      catchError(error => {
-        console.error('Login failed:', error);
-        return of(false);
-      })
+      // catchError(error => {
+      //   console.error('Login failed:', error);
+      //   return of(false);
+      // })
     );
   }
 

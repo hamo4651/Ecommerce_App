@@ -22,6 +22,7 @@ import { AddCategoryComponent } from './dashbourd/category/add-category/add-cate
 import { EditCategoryComponent } from './dashbourd/category/edit-category/edit-category.component';
 import { ProductsComponent } from './dashbourd/products/products.component';
 import { EditProductComponent } from './dashbourd/products/edit-product/edit-product.component';
+import { LoginAuthGuard } from './loginauth.guard';
 
 export const routes: Routes = [
 
@@ -100,11 +101,13 @@ export const routes: Routes = [
 { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 {
     path: 'login',
-    component:LoginComponent
+    component:LoginComponent,
+    canActivate: [LoginAuthGuard]
 
 },{
     path: 'register',
-    component:RegisterComponent
+    component:RegisterComponent,    canActivate: [LoginAuthGuard]
+
 }
 
 ,

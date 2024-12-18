@@ -12,9 +12,10 @@ import { FavoriteService } from '../favorite.service';
 export class FavoritesComponent {
     constructor( private favoriteService: FavoriteService) { }
   products: any[] = [];
+  
     ngOnInit() {
-      this.favoriteService.getFavorites().subscribe((favs: any) => {
-        console.log(favs);
+      this.favoriteService.getFavorites().subscribe((favs: any[]) => {
+        // console.log(favs);
         this.products = favs;
       });
     }

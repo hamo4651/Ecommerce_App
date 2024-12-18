@@ -78,6 +78,11 @@
       <div *ngIf="password.invalid && (password.touched || submitted)" class="form-text text-danger mt-1">
         Password is required
       </div>
+      @if(message){
+        <div id="passwordErrors" class="form-text text-danger">
+            {{ message }}
+        </div>
+      }
     </div>
 
     <!-- Submit Button -->

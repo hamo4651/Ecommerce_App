@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,17 +14,23 @@ import { Router } from '@angular/router';
     cartItems: any[] = [];
     cartItemCount: number = 0;
     totalPrice: number = 0;
-    constructor(private cartService: CartService , private router: Router) {}
+    constructor(private cartService: CartService , private router: Router,
+      private authService: AuthService,
+
+    ) {}
   
     ngOnInit() {
       this.loadCartItems();
+      this.authService.getUser().subscribe(user => {
+
+        if (user) {
       this.cartService.cartItemCount$.subscribe(count => {
         this.cartItemCount = count; // Update count whenever it changes
 
       });
       // this.calculateTotalPrice();
     }
-  
+  });}
     loadCartItems() {
       this.cartService.getCartItem().subscribe(data => {
         this.cartItems = data;

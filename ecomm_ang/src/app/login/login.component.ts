@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { json } from 'stream/consumers';
+import { FavoriteService } from '../favorite.service';
 declare var google: any;
 
 @Component({
@@ -16,19 +17,24 @@ declare var google: any;
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router,private http: HttpClient) {}
+  constructor(private authService: AuthService, private router: Router,private favoriteService:FavoriteService) {}
 
   submitted = false;
   user: any;
- 
+ message: string = '';
+
   handleSubmit(form:NgForm){
+    // this.favoriteService.getFavorites().subscribe((favs: any[]) => {
+    //   // Sync favorites to localStorage
+    //   localStorage.setItem('favs', JSON.stringify(favs.map(fav => fav.id)));
+    // });
     this.submitted = true;
-      console.log(form.value);
+      // console.log(form.value);
       
     
     this.authService.login(form.value).subscribe(
       (response) => {
-        console.log('Login successful', response);
+        // console.log('Login successful', response);
         this.authService.getUser().subscribe(user => {
           if(user.role == 'admin'){
             this.router.navigate(['/dashboard']);
@@ -37,9 +43,13 @@ export class LoginComponent {
             this.router.navigate(['/']);
 
           }
+          
       })      },
       (error) => {
-        console.error('Login failed', error);
+        // console.error('Login failed', error);
+        this.message = error.error.message;
+        // console.log(this.message);
+        
       }
     );
   }

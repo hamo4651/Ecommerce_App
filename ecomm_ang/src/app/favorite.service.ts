@@ -1,6 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class FavoriteService {
     return headers;
   }
 
-  getFavorites() {
+  getFavorites(): Observable<any> {
     return this.http.get('http://127.0.0.1:8000/api/favorites', { headers: this.getHeaders() });
   }
   toggleFavorite(productId: number) {

@@ -3,6 +3,7 @@
     <a routerLink="/details/{{ productItem.id }}">
       <img [src]="productItem.image" class="img-fluid rounded-top" alt="" />
     </a>
+    <!-- @if(user){ -->
     <input
       type="checkbox"
       class="addToFav"
@@ -21,6 +22,7 @@
         class="fs-4 heart"
       ></fa-icon>
     </label>
+  <!-- } -->
   </div>
   @if(productItem.stock>0){
   <span class="badge w-50 py-2 m-2 rounded-pill text-bg-success">In stock</span>
