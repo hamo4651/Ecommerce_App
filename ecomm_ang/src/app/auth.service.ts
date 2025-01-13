@@ -187,4 +187,19 @@ export class AuthService {
     return this.http.get<any>(`http://localhost:8000/auth/google/callback?id_token=${idToken}`);
   }
 
+  getusers(){
+    const token = localStorage.getItem(this.tokenKey);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`http://127.0.0.1:8000/api/users`,{ headers});
+  } 
+  getuser(id:number){
+    const token = localStorage.getItem(this.tokenKey);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiUrl}/user/${id}`,{ headers});
+  } 
+  deleteuser(id:number){
+    const token = localStorage.getItem(this.tokenKey);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(`${this.apiUrl}/user/${id}`,{ headers});
+  } 
 }  

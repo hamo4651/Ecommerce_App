@@ -1,0 +1,74 @@
+<div class="container w-75 mx-auto p-4" style="margin-top: 170px;">
+    <div class="row">
+        <div class="col-3">
+          <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-9">
+    <div class="card shadow-lg border-0 rounded">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <!-- User Image Section -->
+          <div class="col-md-4 text-center border-end py-4">
+            <img
+              [src]="user?.image || 'assets/image.png'"
+              alt="Profile Image"
+              class="img-fluid avatar-xxl rounded-circle border"
+              style="width: 150px; height: 150px;"
+            />
+            <h4 class="text-primary font-weight-bold mt-3 mb-2">{{ user?.name }}</h4>
+          </div>
+  
+          <!-- User Information Section -->
+          <div class="col-md-8">
+            <div class="ms-3">
+              <h4 class="text-dark font-weight-bold mb-3">User Information</h4>
+              <p class="text-muted mb-2">
+                <strong>Email:</strong> {{ user?.email }}
+              </p>
+              <ng-container *ngIf="user?.phone">
+                <p class="text-muted mb-2">
+                  <strong>Phone:</strong> {{ user?.phone }}
+                </p>
+              </ng-container>
+              <ng-container *ngIf="user?.address">
+                <p class="text-muted mb-2">
+                  <strong>Address:</strong> {{ user?.address }}
+                </p>
+              </ng-container>
+              <p class="text-muted mb-0">
+                <strong>Role:</strong> {{ user?.role }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Reviews Section -->
+    <!-- <div *ngIf="user.reviews?.length > 0; else noReviews" class="mt-5">
+      <h5 class="text-center fw-bold fs-4 text-dark mb-4">Reviews</h5>
+      <table class="table table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Property Name</th>
+            <th>Review</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let review of user.reviews">
+            <td>{{ review.property_name }}</td>
+            <td>{{ review.review }}</td>
+            <td>{{ review.rating }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #noReviews>
+      <div class="text-center mt-5">
+        <h5 class="fw-bold fs-5 text-dark">Reviews</h5>
+        <p class="text-muted">No reviews found.</p>
+      </div>
+    </ng-template> -->
+  </div>
+    </div>

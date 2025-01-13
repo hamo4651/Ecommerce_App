@@ -14,6 +14,7 @@ import { AuthService } from '../auth.service';
     cartItems: any[] = [];
     cartItemCount: number = 0;
     totalPrice: number = 0;
+    message: string = '';
     constructor(private cartService: CartService , private router: Router,
       private authService: AuthService,
 
@@ -59,6 +60,7 @@ import { AuthService } from '../auth.service';
       
       if (this.cartItems.length === 0) {
         console.log('No items in the cart.');
+        this.totalPrice = 0;
         return;
       }
     
@@ -73,7 +75,7 @@ import { AuthService } from '../auth.service';
     placeOrder() {
       this.cartService.placeOrder().subscribe(
         (response) => {
-          console.log(response.message);
+          // console.log(response.message);
           alert('Order placed successfully!');
           this.loadCartItems();
           this.totalPrice = 0;
@@ -82,8 +84,10 @@ import { AuthService } from '../auth.service';
 
         },
         (error) => {
-          console.error(error);
-          alert('Failed to place order.');
+          // console.error(error);
+          // console.error(error.error.message);
+          // this.message = error.error.message;
+          alert(error.error.message);
         }
       );
     }

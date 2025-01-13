@@ -23,6 +23,8 @@ import { EditCategoryComponent } from './dashbourd/category/edit-category/edit-c
 import { ProductsComponent } from './dashbourd/products/products.component';
 import { EditProductComponent } from './dashbourd/products/edit-product/edit-product.component';
 import { LoginAuthGuard } from './loginauth.guard';
+import { UsersComponent } from './dashbourd/users/users/users.component';
+import { UserComponent } from './dashbourd/users/user/user.component';
 
 export const routes: Routes = [
 
@@ -72,6 +74,13 @@ export const routes: Routes = [
     component: ShowproductsComponent 
 
 },
+{
+    path:'users',
+    component:UsersComponent,
+    canActivate: [AdminGuard]
+},{path:'user/:id',
+    component:UserComponent,
+    canActivate: [AdminGuard]},
 {
     path: 'search',
     component: SearchResultComponent 

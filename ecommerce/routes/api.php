@@ -9,9 +9,13 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 // Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //     return $request->user();
+// });
+// Route::get('/users',function(){
+//     return response()->json(['data'=>User::all()]);
 // });
 Route::get('/products/search', [ProductController::class, 'search']);
 Route::get('/cancelorder/{id}', [OrderController::class, 'cancelorder']);
@@ -19,6 +23,7 @@ Route::get('/cancelorder/{id}', [OrderController::class, 'cancelorder']);
 Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/products', ProductController::class);
 Route::get('/categories/{id}/products', [CategoryController::class, 'getproductcategory']);
+ /////////////
 
 // ========== auth api
 Route::post('/register', [AuthController::class, 'register']);
@@ -39,6 +44,12 @@ Route::group(["middleware"=>"auth:sanctum"],function(){
     Route::get('/ViewOrder/{id}', [OrderController::class, 'ViewOrder']);
 
     Route::post('/updateOrders/{orderId}', [OrderController::class, 'updateOrderStatus']);
+
+   
+ Route::get('/users', [AuthController::class, 'getusers']);
+ Route::get('/user/{id}', [AuthController::class, 'user']);
+ Route::delete('/user/{id}', [AuthController::class, 'delete']);
+ /////////
 
 
 });

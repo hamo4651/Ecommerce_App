@@ -121,4 +121,19 @@ class AuthController extends Controller
       'message' => 'Logout successfully'
     ]);
   }
+  public function getusers(){
+
+    $users = User::all();
+    return response()->json($users);
+  }
+  public function user($id){
+    $user = User::find($id);
+    return response()->json($user);
+  }
+  public function delete( $id){
+    $user = User::find($id);
+    // unlink($user->image);
+    $user->delete();
+    return response()->json(['message' => 'User deleted successfully']);
+  }
 }
